@@ -10,3 +10,19 @@ services:
             - "5000:5000"
         volumes:
             - ./app.py:/mnt/app.py
+            - flask-data:/app
+
+    mongo:
+        image: mongo
+        restart: always
+        ports:
+            - 27017:27017
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: example
+        volumes:
+            - mongo-data:/data/db
+
+volumes:
+    flask-data: {}
+    mongo-data: {}
